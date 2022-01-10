@@ -16,6 +16,7 @@ function App() {
         <Route path="/" exact component={Login} />
         <Route path="/profile" component={Profile} />
         <Route path="/add" component={AddEdit} />
+        <Route path="/edit/:profileId" component={AddEdit} />
       </Switch>
     </>
   );

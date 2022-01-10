@@ -1,0 +1,34 @@
+/* #formBody {
+  margin: 100px auto;
+  width: 500px;
+  height: 500px;
+  border: 2px solid red;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  max-width: 500px;
+  min-width: 300px;
+  max-height: 700px;
+  width: 30%;
+  height: 60%;
+  border: 2px solid red;
+}
+*/
+#headerTitles {
+  text-align: center;
+}
+
+.main {
+  width: 500px;
+  height: 500px;
+  border: 2px solid red;
+  margin: 100px auto;
+}
+
+#formBody {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+}
