@@ -1,4 +1,4 @@
-import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
+import { Navbar, Container, Nav } from "react-bootstrap";
 
 export const Headers = () => {
   return (
@@ -9,9 +9,9 @@ export const Headers = () => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto"></Nav>
           <Nav>
-            <Nav.Link href="#profiles">Profiles</Nav.Link>
-            <Nav.Link href="#add">Add Profiles</Nav.Link>
-            <Nav.Link href="#logout">Logout</Nav.Link>
+            <Nav.Link href="profile">Profiles</Nav.Link>
+            <Nav.Link href="add">Add Profiles</Nav.Link>
+            <Nav.Link href="/">Logout</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

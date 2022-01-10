@@ -1,14 +1,22 @@
-import "./App.css";
+// import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import { Login } from "./container/Login";
+import { Profile } from "./container/Profile";
+import { AddEdit } from "./container/AddEdit";
 import { Headers } from "./components/Headers";
-import { FormComponent } from "./components/Login";
+
+import { Switch, Route } from "react-router-dom";
 
 function App() {
   return (
     <>
       <Headers />
-      <FormComponent />
+      <Switch>
+        <Route path="/" exact component={Login} />
+        <Route path="/profile" component={Profile} />
+        <Route path="/add" component={AddEdit} />
+      </Switch>
     </>
   );
 }
