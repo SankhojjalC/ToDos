@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "Sankhojjal",
+      "password": "1234",
+      "hasRights": true
+    },
+    {
+      "id": 2,
+      "username": "Baban",
+      "password": "123456",
+      "hasRights": false
+    }
+  ]
+}
