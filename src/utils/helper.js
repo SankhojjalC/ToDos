@@ -6,7 +6,7 @@ export const validatePassword = (username, password) => {
     if (filteredUserData[0].password === password) {
       return {
         status: 200,
-        data: filteredUserData,
+        data: filteredUserData[0],
         message: "User Login Successful",
       };
     } else {

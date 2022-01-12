@@ -6,12 +6,12 @@ const initialState = {
 };
 
 export const loggedInSlice = createSlice({
-  name: "loggedIn",
+  name: "logedInReducer",
   initialState,
   reducers: {
     logIn: (state, action) => {
       state.isloggedIn = true;
-      state.user = action.user;
+      state.user = { ...action.payload };
     },
   },
 });

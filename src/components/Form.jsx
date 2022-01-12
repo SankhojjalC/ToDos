@@ -1,12 +1,19 @@
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+
+import { logIn } from "../store/logedInReducer";
 import { useState } from "react";
 import { FormInput } from "./FormInput";
 import { FormButton } from "./FormButton";
 
-import "./styles/login.css";
-
 import { validatePassword } from "../utils/helper";
 
+import "./styles/login.css";
+
 export const Form = (props) => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
@@ -14,10 +21,10 @@ export const Form = (props) => {
     event.preventDefault();
     const response = validatePassword(userName, password);
     if (response?.status === 200) {
-      //login True
-      console.log("RESPO is finally----->", response?.data);
       //show success toaster message
-      // save user cred in localstorage and redux
+      localStorage.setItem("userDetails", JSON.stringify(response?.data));
+      dispatch(logIn(response?.data));
+      history.push("/profile");
     } else if (response?.status === 301) {
       //show toaster message that passowrd is wrong
     } else if (response?.status === 400) {
