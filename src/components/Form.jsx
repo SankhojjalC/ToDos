@@ -1,6 +1,8 @@
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
+import { toast } from "react-toastify";
+
 import { logIn } from "../store/logedInReducer";
 import { useState } from "react";
 import { FormInput } from "./FormInput";
@@ -24,11 +26,17 @@ export const Form = (props) => {
       //show success toaster message
       localStorage.setItem("userDetails", JSON.stringify(response?.data));
       dispatch(logIn(response?.data));
+      toast.success("Login Successful !");
       history.push("/profile");
     } else if (response?.status === 301) {
       //show toaster message that passowrd is wrong
+      setPassword("");
+      toast.warn("Your Password is wrong");
     } else if (response?.status === 400) {
       //show toaster message user doesn;t exist and clear the username and password
+      setUserName("");
+      setPassword("");
+      toast.error("User doesn't exist");
     }
   };
 

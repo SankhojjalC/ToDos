@@ -1,6 +1,7 @@
 // import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import { PrivateRoute } from "./utils/PrivateRoute";
 import { Login } from "./container/Login";
 import { Profile } from "./container/Profile";
 import { AddEdit } from "./container/AddEdit";
@@ -14,9 +15,9 @@ function App() {
       <Headers />
       <Switch>
         <Route path="/" exact component={Login} />
-        <Route path="/profile" component={Profile} />
-        <Route path="/add" component={AddEdit} />
-        <Route path="/edit/:profileId" component={AddEdit} />
+        <PrivateRoute path="/profile" component={Profile} />
+        <PrivateRoute path="/add" component={AddEdit} />
+        <PrivateRoute path="/edit/:profileId" component={AddEdit} />
       </Switch>
     </>
   );
