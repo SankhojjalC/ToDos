@@ -1,6 +1,7 @@
 import Table from "react-bootstrap/Table";
-import { FaMale, FaFemale, FaUserEdit } from "react-icons/fa";
+import { FaUserEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
+import { BsGenderMale, BsGenderFemale } from "react-icons/bs";
 import React from "react";
 
 const TableHeader = () => (
@@ -27,7 +28,9 @@ const TableBody = ({ userDataList }) =>
           <td>{item.id}</td>
           <td>{item.name}</td>
           <td>{item.Age}</td>
-          <td>{item.gender === "Male" ? <FaMale /> : <FaFemale />}</td>
+          <td>
+            {item.Gender === "Male" ? <BsGenderMale /> : <BsGenderFemale />}
+          </td>
           <td>{item.isMarried ? "Y" : "N"}</td>
           <td>
             <FaUserEdit />
