@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  isDataSet: false,
   userData: [],
 };
 
@@ -9,7 +10,10 @@ export const userDataSlice = createSlice({
   initialState,
   reducers: {
     fetchUsers: (state, action) => {
-      state.userData = [...state.userData, ...action.payload];
+      if (!state.isDataSet) {
+        state.userData = [...state.userData, ...action.payload];
+        state.isDataSet = true;
+      }
     },
   },
 });

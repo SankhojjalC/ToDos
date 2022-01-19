@@ -1,5 +1,6 @@
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 export const Headers = () => {
   const isloggedIn = useSelector((state) => state.logedInReducer.isloggedIn);
@@ -13,9 +14,15 @@ export const Headers = () => {
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="me-auto"></Nav>
               <Nav>
-                <Nav.Link href="profile">Profiles</Nav.Link>
-                <Nav.Link href="add">Add Profiles</Nav.Link>
-                <Nav.Link href="/">Logout</Nav.Link>
+                <Nav.Link>
+                  <Link to="/profile">Profiles</Link>
+                </Nav.Link>
+                <Nav.Link>
+                  <Link to="/add">Add Profiles</Link>
+                </Nav.Link>
+                <Nav.Link>
+                  <Link to="/">Logout</Link>
+                </Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </>

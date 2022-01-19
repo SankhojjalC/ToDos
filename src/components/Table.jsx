@@ -23,23 +23,21 @@ const TableHeader = () => (
 const TableBody = ({ userDataList }) =>
   userDataList.map((item) => (
     <React.Fragment key={item.id}>
-      <tbody>
-        <tr>
-          <td>{item.id}</td>
-          <td>{item.name}</td>
-          <td>{item.Age}</td>
-          <td>
-            {item.Gender === "Male" ? <BsGenderMale /> : <BsGenderFemale />}
-          </td>
-          <td>{item.isMarried ? "Y" : "N"}</td>
-          <td>
-            <FaUserEdit />
-          </td>
-          <td>
-            <AiFillDelete />
-          </td>
-        </tr>
-      </tbody>
+      <tr onClick={() => console.log(item)}>
+        <td>{item.id}</td>
+        <td>{item.name}</td>
+        <td>{item.Age}</td>
+        <td>
+          {item.Gender === "Male" ? <BsGenderMale /> : <BsGenderFemale />}
+        </td>
+        <td>{item.isMarried ? "Y" : "N"}</td>
+        <td>
+          <FaUserEdit />
+        </td>
+        <td>
+          <AiFillDelete />
+        </td>
+      </tr>
     </React.Fragment>
   ));
 
@@ -48,7 +46,9 @@ export const TableComponent = ({ userDataList }) => {
     <>
       <Table striped bordered hover>
         <TableHeader />
-        <TableBody userDataList={userDataList} />
+        <tbody>
+          <TableBody userDataList={userDataList} />
+        </tbody>
       </Table>
     </>
   );
