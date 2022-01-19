@@ -12,7 +12,7 @@ export const Profile = () => {
 
   useEffect(() => {
     dispatch(fetchUsers(userList.users));
-  }, [userList]);
+  }, [dispatch]);
 
   return <TableComponent userDataList={userDataList} />;
 };

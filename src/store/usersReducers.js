@@ -15,8 +15,12 @@ export const userDataSlice = createSlice({
         state.isDataSet = true;
       }
     },
+    deleteUser: (state, action) => {
+      const { id } = action.payload;
+      state.userData = state.userData.filter((item) => item.id !== id);
+    },
   },
 });
 
-export const { fetchUsers } = userDataSlice.actions;
+export const { fetchUsers, deleteUser } = userDataSlice.actions;
 export default userDataSlice.reducer;
