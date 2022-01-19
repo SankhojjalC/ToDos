@@ -19,8 +19,13 @@ export const userDataSlice = createSlice({
       const { id } = action.payload;
       state.userData = state.userData.filter((item) => item.id !== id);
     },
+    addUsers: (state, action) => {
+      console.log("INSIDE reducers", action.payload);
+      console.log("DONE WITH reducer", action.payload);
+      state.userData = [...state.userData, action.payload];
+    },
   },
 });
 
-export const { fetchUsers, deleteUser } = userDataSlice.actions;
+export const { fetchUsers, deleteUser, addUsers } = userDataSlice.actions;
 export default userDataSlice.reducer;
