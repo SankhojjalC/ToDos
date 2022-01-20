@@ -1,34 +1,51 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { useParams, useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import { addUsers } from "../store/usersReducers";
+import { addUsers, editUser } from "../store/usersReducers";
 
 import "./styles/user.css";
 
 export const AddEdit = () => {
   const dispatch = useDispatch();
+  const userDataList = useSelector((state) => state.usersReducers.userData);
   const params = useParams();
-  const location = useLocation();
+  const [editedUserDetails, setEditableUserDetails] = useState({});
 
-  console.log("PARAMS------>", params);
-  console.log("LOCATION---->", location);
+  const isEditPage = params.hasOwnProperty("profileId") ? true : false;
+
+  useEffect(() => {
+    if (isEditPage) {
+      let user = userDataList.filter(
+        (data) => data.id === parseInt(params.profileId)
+      );
+      setEditableUserDetails(...user);
+    }
+  }, []);
 
   const formik = useFormik({
     initialValues: {
-      id: "",
-      name: "",
-      Age: "",
-      Gender: "",
-      isMarried: "",
+      id: editedUserDetails?.id || "",
+      name: editedUserDetails?.name || "",
+      Age: editedUserDetails?.Age || "",
+      Gender: editedUserDetails?.Gender || "",
+      isMarried: editedUserDetails?.isMarried || "",
     },
+    enableReinitialize: true,
     onSubmit: (data) => {
-      const isMarried = data?.isMarried.length ? true : false;
-      data = { ...data, isMarried: isMarried };
-      dispatch(addUsers(data));
+      if (isEditPage) {
+        console.log("DATA FORM-------->", data);
+        const isMarried = data?.isMarried.length ? true : false;
+        data = { ...data, isMarried: isMarried };
+        dispatch(editUser(data));
+      } else {
+        const isMarried = data?.isMarried.length ? true : false;
+        data = { ...data, isMarried: isMarried };
+        dispatch(addUsers(data));
+      }
     },
     validationSchema: Yup.object({
       id: Yup.number().max(10, "Id can be max 10").required("ID is required"),
@@ -85,6 +102,7 @@ export const AddEdit = () => {
           <input
             type="radio"
             value="Male"
+            checked={formik.values?.Gender === "Male"}
             name="Gender"
             onChange={formik.handleChange}
           />{" "}
@@ -92,6 +110,7 @@ export const AddEdit = () => {
           <input
             type="radio"
             value="Female"
+            checked={formik.values?.Gender === "Female"}
             name="Gender"
             onChange={formik.handleChange}
           />{" "}
@@ -103,6 +122,7 @@ export const AddEdit = () => {
             type="checkbox"
             value="married"
             name="isMarried"
+            checked={formik.values?.isMarried}
             onChange={formik.handleChange}
           />
         </label>

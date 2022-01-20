@@ -5,7 +5,7 @@
       "name": "Baban",
       "Age": 27,
       "Gender": "Male",
-      "isMarried": false
+      "isMarried": true
     },
     {
       "id": 2,
