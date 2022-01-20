@@ -1,4 +1,6 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
+
 import { FaUserEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import { BsGenderMale, BsGenderFemale } from "react-icons/bs";
@@ -8,6 +10,13 @@ import { deleteUser } from "../store/usersReducers";
 
 export const TableBody = ({ userDataList }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
+
+  const handleEditData = (data) => {
+    const { id } = data;
+    history.push(`/edit/${id}`);
+  };
+
   const handleDeleteData = (data) => {
     dispatch(deleteUser(data));
   };
@@ -22,7 +31,7 @@ export const TableBody = ({ userDataList }) => {
           {item.Gender === "Male" ? <BsGenderMale /> : <BsGenderFemale />}
         </td>
         <td>{item.isMarried ? "Y" : "N"}</td>
-        <td onClick={() => console.log(item)}>
+        <td onClick={() => handleEditData(item)}>
           <FaUserEdit />
         </td>
         <td onClick={() => handleDeleteData(item)}>

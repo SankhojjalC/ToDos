@@ -1,14 +1,21 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { useParams, useLocation } from "react-router-dom";
+
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
 import { addUsers } from "../store/usersReducers";
-import { useDispatch } from "react-redux";
 
 import "./styles/user.css";
 
 export const AddEdit = () => {
   const dispatch = useDispatch();
+  const params = useParams();
+  const location = useLocation();
+
+  console.log("PARAMS------>", params);
+  console.log("LOCATION---->", location);
 
   const formik = useFormik({
     initialValues: {
