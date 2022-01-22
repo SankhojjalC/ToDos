@@ -5,7 +5,7 @@ import { FaUserEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import { BsGenderMale, BsGenderFemale } from "react-icons/bs";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteUser } from "../store/usersReducers";
 
 export const TableBody = ({ userDataList }) => {
@@ -13,12 +13,19 @@ export const TableBody = ({ userDataList }) => {
   const history = useHistory();
 
   const handleEditData = (data) => {
-    const { id } = data;
-    history.push(`/edit/${id}`);
+    if (hasRights) {
+      const { id } = data;
+      history.push(`/edit/${id}`);
+    }
   };
+  const hasRights = useSelector(
+    (state) => state.logedInReducer?.loggedInUser?.hasRights
+  );
 
   const handleDeleteData = (data) => {
-    dispatch(deleteUser(data));
+    if (hasRights) {
+      dispatch(deleteUser(data));
+    }
   };
 
   return userDataList.map((item) => (
