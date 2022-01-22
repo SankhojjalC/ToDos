@@ -37,7 +37,6 @@ export const AddEdit = () => {
     enableReinitialize: true,
     onSubmit: (data) => {
       if (isEditPage) {
-        console.log("DATA FORM-------->", data);
         const isMarried = data?.isMarried.length ? true : false;
         data = { ...data, isMarried: isMarried };
         dispatch(editUser(data));

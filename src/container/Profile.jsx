@@ -14,7 +14,5 @@ export const Profile = () => {
     dispatch(fetchUsers(userList.users));
   }, [dispatch]);
 
-  console.log("USERS Profile------>", userDataList);
-
   return <TableComponent userDataList={userDataList} />;
 };

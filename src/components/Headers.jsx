@@ -4,6 +4,10 @@ import { Link } from "react-router-dom";
 
 export const Headers = () => {
   const isloggedIn = useSelector((state) => state.logedInReducer.isloggedIn);
+  const userDataList = useSelector(
+    (state) => state.logedInReducer.loggedInUser
+  );
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
@@ -17,9 +21,12 @@ export const Headers = () => {
                 <Nav.Link>
                   <Link to="/profile">Profiles</Link>
                 </Nav.Link>
-                <Nav.Link>
-                  <Link to="/add">Add Profiles</Link>
-                </Nav.Link>
+                {userDataList?.hasRights && (
+                  <Nav.Link>
+                    <Link to="/add">Add Profiles</Link>
+                  </Nav.Link>
+                )}
+
                 <Nav.Link>
                   <Link to="/">Logout</Link>
                 </Nav.Link>
