@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -11,6 +11,7 @@ import "./styles/user.css";
 
 export const AddEdit = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const userDataList = useSelector((state) => state.usersReducers.userData);
   const params = useParams();
   const [editedUserDetails, setEditableUserDetails] = useState({});
@@ -40,10 +41,12 @@ export const AddEdit = () => {
         const isMarried = data?.isMarried.length ? true : false;
         data = { ...data, isMarried: isMarried };
         dispatch(editUser(data));
+        history.push("/profile");
       } else {
         const isMarried = data?.isMarried.length ? true : false;
         data = { ...data, isMarried: isMarried };
         dispatch(addUsers(data));
+        history.push("/profile");
       }
     },
     validationSchema: Yup.object({
