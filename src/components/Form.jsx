@@ -24,7 +24,7 @@ export const Form = (props) => {
     const response = validatePassword(userName, password);
     if (response?.status === 200) {
       //show success toaster message
-      localStorage.setItem("userDetails", JSON.stringify(response?.data));
+      localStorage.setItem("loginUserDetails", JSON.stringify(response?.data));
       dispatch(logIn(response?.data));
       toast.success("Login Successful !");
       history.push("/profile");

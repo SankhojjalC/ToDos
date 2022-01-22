@@ -23,14 +23,22 @@ export const userDataSlice = createSlice({
       state.userData = [...state.userData, action.payload];
     },
     editUser: (state, action) => {
-      console.log("EDIT Reducer----->", action.payload);
       const { id } = action.payload;
       const index = state.userData.findIndex((user) => user.id === id);
       state.userData.splice(index, 1, action.payload);
     },
+    clearUserDataOnLogout: (state) => {
+      state.isDataSet = initialState.isDataSet;
+      state.userData = initialState.userData;
+    },
   },
 });
 
-export const { fetchUsers, deleteUser, addUsers, editUser } =
-  userDataSlice.actions;
+export const {
+  fetchUsers,
+  deleteUser,
+  addUsers,
+  editUser,
+  clearUserDataOnLogout,
+} = userDataSlice.actions;
 export default userDataSlice.reducer;

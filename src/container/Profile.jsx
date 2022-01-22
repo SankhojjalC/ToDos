@@ -11,6 +11,7 @@ export const Profile = () => {
   const userDataList = useSelector((state) => state.usersReducers.userData);
 
   useEffect(() => {
+    localStorage.setItem("userList", JSON.stringify(userList.users));
     dispatch(fetchUsers(userList.users));
   }, [dispatch]);
 

@@ -1,12 +1,21 @@
 import { Navbar, Container, Nav } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { logOut } from "../store/logedInReducer";
+import { clearUserDataOnLogout } from "../store/usersReducers";
 
 export const Headers = () => {
+  const dispatch = useDispatch();
   const isloggedIn = useSelector((state) => state.logedInReducer.isloggedIn);
   const userDataList = useSelector(
     (state) => state.logedInReducer.loggedInUser
   );
+
+  const handleLogout = () => {
+    dispatch(logOut());
+    dispatch(clearUserDataOnLogout());
+    localStorage.clear();
+  };
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -28,7 +37,9 @@ export const Headers = () => {
                 )}
 
                 <Nav.Link>
-                  <Link to="/">Logout</Link>
+                  <Link to="/" onClick={handleLogout}>
+                    Logout
+                  </Link>
                 </Nav.Link>
               </Nav>
             </Navbar.Collapse>
