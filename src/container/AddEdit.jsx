@@ -8,6 +8,7 @@ import * as Yup from "yup";
 import { addUsers, editUser } from "../store/usersReducers";
 
 import "./styles/user.css";
+import { toast } from "react-toastify";
 
 export const AddEdit = () => {
   const dispatch = useDispatch();
@@ -38,13 +39,13 @@ export const AddEdit = () => {
     enableReinitialize: true,
     onSubmit: (data) => {
       if (isEditPage) {
-        console.log("EDIT handler----->", data);
         dispatch(editUser(data));
         history.push("/profile");
+        toast.success(`${data.name}'s data has been modified`);
       } else {
-        console.log("ADD handler----->", data);
         dispatch(addUsers(data));
         history.push("/profile");
+        toast.success(`${data.name}'s data has been added`);
       }
     },
     validationSchema: Yup.object({

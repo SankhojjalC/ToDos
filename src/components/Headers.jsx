@@ -6,7 +6,12 @@ import { clearUserDataOnLogout } from "../store/usersReducers";
 
 export const Headers = () => {
   const dispatch = useDispatch();
-  const isloggedIn = useSelector((state) => state.logedInReducer.isloggedIn);
+  const localStorageLoggedInUserObj = JSON.parse(
+    localStorage.getItem("loginUserDetails")
+  );
+  const isloggedIn =
+    useSelector((state) => state.logedInReducer.isloggedIn) ||
+    localStorage.getItem("loginUserDetails");
   const userDataList = useSelector(
     (state) => state.logedInReducer.loggedInUser
   );
@@ -30,7 +35,8 @@ export const Headers = () => {
                 <Nav.Link>
                   <Link to="/profile">Profiles</Link>
                 </Nav.Link>
-                {userDataList?.hasRights && (
+                {(userDataList?.hasRights ||
+                  localStorageLoggedInUserObj?.hasRights) && (
                   <Nav.Link>
                     <Link to="/add">Add Profiles</Link>
                   </Nav.Link>

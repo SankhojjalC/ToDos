@@ -7,6 +7,7 @@ import { BsGenderMale, BsGenderFemale } from "react-icons/bs";
 
 import { useDispatch, useSelector } from "react-redux";
 import { deleteUser } from "../store/usersReducers";
+import { toast } from "react-toastify";
 
 export const TableBody = ({ userDataList }) => {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ export const TableBody = ({ userDataList }) => {
   const handleDeleteData = (data) => {
     if (hasRights) {
       dispatch(deleteUser(data));
+      toast.warn(`${data.name}'s data is deleted`);
     }
   };
 
