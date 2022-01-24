@@ -24,6 +24,7 @@ export const userDataSlice = createSlice({
     },
     editUser: (state, action) => {
       const { id } = action.payload;
+      console.log("Reducer edit-------->", action.payload);
       const index = state.userData.findIndex((user) => user.id === id);
       state.userData.splice(index, 1, action.payload);
     },

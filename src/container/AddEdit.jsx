@@ -38,13 +38,11 @@ export const AddEdit = () => {
     enableReinitialize: true,
     onSubmit: (data) => {
       if (isEditPage) {
-        const isMarried = data?.isMarried.length ? true : false;
-        data = { ...data, isMarried: isMarried };
+        console.log("EDIT handler----->", data);
         dispatch(editUser(data));
         history.push("/profile");
       } else {
-        const isMarried = data?.isMarried.length ? true : false;
-        data = { ...data, isMarried: isMarried };
+        console.log("ADD handler----->", data);
         dispatch(addUsers(data));
         history.push("/profile");
       }
@@ -124,7 +122,10 @@ export const AddEdit = () => {
             type="checkbox"
             value="married"
             name="isMarried"
-            checked={formik.values?.isMarried}
+            checked={
+              formik.values?.isMarried.length ||
+              formik.values?.isMarried === true
+            }
             onChange={formik.handleChange}
           />
         </label>

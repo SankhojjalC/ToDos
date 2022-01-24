@@ -37,7 +37,7 @@ export const TableBody = ({ userDataList }) => {
         <td>
           {item.Gender === "Male" ? <BsGenderMale /> : <BsGenderFemale />}
         </td>
-        <td>{item.isMarried ? "Y" : "N"}</td>
+        <td>{item.isMarried === true || item.isMarried.length ? "Y" : "N"}</td>
         <td onClick={() => handleEditData(item)}>
           <FaUserEdit />
         </td>
